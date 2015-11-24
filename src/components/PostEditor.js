@@ -29,6 +29,7 @@ export default class PostEditor extends Component {
           <form onSubmit={::this.handleSubmit}>
             <textarea
               onChange={(e) => this.setState({ message: e.target.value })}
+              onKeyDown={(e) => e.which === 27 && this.setState({ open: false, message: '' })}
               placeholder='Write something funny'
               autoFocus
               value={this.state.message}
