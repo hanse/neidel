@@ -2,6 +2,7 @@ import './Posts.css';
 import React, { Component, PropTypes } from 'react';
 import Header from './Header';
 import Post from './Post';
+import PostEditor from './PostEditor';
 
 function jazz(g, d = 0.000012) {
   return g + Math.random() * (d * 2) - d;
@@ -11,12 +12,14 @@ export default class Posts extends Component {
   static propTypes = {
     posts: PropTypes.array,
     karma: PropTypes.number,
-    loading: PropTypes.loading,
+    loading: PropTypes.bool,
     fetchPosts: PropTypes.func,
     upvote: PropTypes.func,
     downvote: PropTypes.func,
     kill: PropTypes.func,
     star: PropTypes.func,
+    updateAuth: PropTypes.func,
+    savePost: PropTypes.func,
     location: PropTypes.object
   }
 
@@ -102,14 +105,17 @@ export default class Posts extends Component {
   }
 
   render() {
-    const { posts, loading, upvote, downvote, kill, star } = this.props;
+    const { posts, loading, upvote, downvote, kill, star, updateAuth, savePost } = this.props;
     return (
       <div>
-        <Header />
-        <div className='Posts u-content'>
+        <Header {...{ updateAuth }} />
+        <div className='Posts'>
+          <PostEditor
+            {...{ savePost }}
+          />
           {loading && <div className='loading-overlay'>Loading...</div>}
           {posts.map(post => <Post
-            key={post.id}
+            key={post.post_id}
             {...{ post, upvote, downvote, kill, star }}
           />)}
         </div>

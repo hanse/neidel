@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Posts from '../components/Posts';
-import { fetchPosts, upvote, downvote, kill, star } from '../actions/posts';
+import { fetchPosts, upvote, downvote, kill, star, savePost } from '../actions/posts';
+import { updateAuth } from '../actions/auth';
 
 export default connect((state) => ({
   posts: state.posts.get('posts').toJS(),
@@ -10,5 +11,7 @@ export default connect((state) => ({
   upvote,
   downvote,
   kill,
-  star
+  star,
+  updateAuth,
+  savePost
 })(Posts);

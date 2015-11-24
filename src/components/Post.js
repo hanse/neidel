@@ -33,8 +33,8 @@ export default class Post extends Component {
 
         {post.child_count && this.state.expanded && (
           <div className='Post__replies'>
-            {post.children.map(child => <Post
-              key={child.id}
+            {post.children.map((child, i) => <Post
+              key={i}
               post={child}
               upvote={() => upvote(child.post_id)}
             />)}

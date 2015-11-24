@@ -4,15 +4,16 @@ import { Post } from '../actions/types';
 
 const initialState = Map({
   posts: List(),
-  loading: false
+  loading: false,
+  error: null
 });
 
 export default createReducer(initialState, {
   [Post.FETCH_SUCCESS]: (state, action) =>
     state.merge({ posts: fromJS(action.posts), loading: false }),
 
-  [Post.FETCH_FAILURE]: (state) =>
-    state.merge({ loading: false }),
+  [Post.FETCH_FAILURE]: (state, action) =>
+    state.merge({ loading: false, error: action.error }),
 
   [Post.FETCH_BEGIN]: (state) =>
     state.merge({ loading: true }),

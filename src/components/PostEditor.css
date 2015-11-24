@@ -1,0 +1,13 @@
+.PostEditor {
+  textarea, button {
+    display: block;
+    width: 100%;
+  }
+
+  textarea {
+    font-size: 1.2rem;
+    border: 0;
+    background: #fff;
+    padding: 1rem;
+  }
+}
