@@ -1,0 +1,76 @@
+.Posts {
+  height: 70vh;
+  overflow-y: scroll;
+  width: 640px;
+  position: absolute;
+  z-index: 10;
+  top: 150px;
+  left: 100px;
+  border: 12px solid rgba(255, 255, 255, .4);
+}
+
+.loading-overlay {
+  position: fixed;
+  width: 640px;
+  height: 70vh;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  text-align: center;
+  padding-top: 2rem;
+  font-size: 2rem;
+}
+
+.Posts::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.Post {
+  padding: 1rem;
+  margin-bottom: 1px;
+  opacity: 1;
+}
+
+.Post__replies {
+  margin-top: 1rem;
+}
+
+.Post__replies .Post {
+  border-left: 3px solid rgba(255, 255, 255, .4);
+  margin: 0.5rem 0 0.5rem 2rem;
+}
+
+.Post__votes {
+  margin-top: .5rem;
+}
+
+.Post__votes__count {
+  color: #fff;
+  font-weight: 700;
+  margin-right: 1rem;
+}
+
+.Post__votes button {
+  border: 0;
+  background: rgba(255, 255, 255, .4);
+  font-weight: 700;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1rem;
+  padding: 0.2rem 0.5rem;
+  margin-right: 3px;
+  color: #333;
+
+  &:hover {
+    background: rgba(255, 255, 255, .3);
+  }
+}

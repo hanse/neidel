@@ -1,0 +1,42 @@
+.Header {
+  background: #333;
+  padding: 0 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.u-pad-left {
+  margin-left: 2rem;
+}
+
+.Navigation {
+  height: 60px;
+  line-height: 60px;
+}
+
+.Navigation ul li {
+  display: inline;
+
+  a {
+    padding: 0 20px;
+    color: #ddd;
+    display: inline-block;
+    text-decoration: none;
+
+    &:hover, &.active {
+      background: #222;
+    }
+  }
+
+  input {
+    font-size: 1.2rem;
+    padding: 5px 10px;
+    margin-right: 1rem;
+    border: 0;
+    background: #444;
+    color: #aaa;
+  }
+}

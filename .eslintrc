@@ -1,0 +1,19 @@
+{
+  "extends": "airbnb",
+  "rules": {
+    "comma-dangle": 0,
+    "jsx-quotes": [2, "prefer-single"],
+    "new-cap": 0,
+    "react/no-multi-comp": 0,
+    "react/sort-comp": 0
+  },
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "globals": {
+    "__DEV__": true,
+    "log": true,
+    "mapboxgl": true
+  }
+}
