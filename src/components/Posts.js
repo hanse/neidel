@@ -23,7 +23,7 @@ export default class Posts extends Component {
     updateToken: PropTypes.func,
     savePost: PropTypes.func,
     location: PropTypes.object,
-    locations: PropTypes.object
+    locations: PropTypes.array
   }
 
   geoDataSource = new mapboxgl.GeoJSONSource({

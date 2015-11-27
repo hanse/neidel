@@ -7,7 +7,7 @@ export default connect((state) => ({
   posts: state.posts.get('posts').toJS(),
   loading: state.posts.get('loading'),
   locations: state.auth.get('locations').toJS(),
-  currentLocation: state.auth.getIn(['locations', state.auth.get('currentLocation'), 'loc_coordinates']).toJS()::log()
+  currentLocation: state.auth.getIn(['locations', state.auth.get('currentLocation'), 'loc_coordinates']).toJS()
 }), {
   fetchPosts,
   upvote,

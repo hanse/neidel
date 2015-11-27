@@ -7,7 +7,7 @@ export default class Header extends Component {
   static propTypes = {
     updateToken: PropTypes.func.isRequired,
     updateLocation: PropTypes.func.isRequired,
-    locations: PropTypes.object
+    locations: PropTypes.array
   }
 
   handleSave() {

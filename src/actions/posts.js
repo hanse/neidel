@@ -17,7 +17,6 @@ export function fetchPosts(path) {
   };
 }
 
-
 export function savePost(message) {
   return (dispatch, getState) => {
     if (!message) return;

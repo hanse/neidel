@@ -20,7 +20,7 @@ export function updateLocation(location) {
       },
       body: JSON.stringify({
         location: getState().auth.getIn(['locations', location]).toJS()
-      })::log()
+      })
     }).then(
       result => dispatch({ type: Auth.UPDATE_LOCATION_SUCCESS, result }),
       error => dispatch({ type: Auth.UPDATE_LOCATION_FAILURE, error })
