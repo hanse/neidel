@@ -33,7 +33,7 @@
     "history": "^1.13.0",
     "html-webpack-plugin": "^1.6.2",
     "immutable": "^3.7.5",
-    "jodel": "^0.2.0",
+    "jodel": "^0.3.0",
     "jsdom": "^7.0.2",
     "lodash": "^3.10.1",
     "mocha": "^2.3.4",
