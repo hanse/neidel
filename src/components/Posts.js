@@ -18,14 +18,19 @@ export default class Posts extends Component {
     downvote: PropTypes.func,
     kill: PropTypes.func,
     star: PropTypes.func,
-    updateAuth: PropTypes.func,
+    currentLocation: PropTypes.object,
+    updateLocation: PropTypes.func,
+    updateToken: PropTypes.func,
     savePost: PropTypes.func,
-    location: PropTypes.object
+    location: PropTypes.object,
+    locations: PropTypes.object
   }
 
   geoDataSource = new mapboxgl.GeoJSONSource({
     data: {}
   })
+
+  map = null
 
   componentDidMount() {
     this.props.fetchPosts(this.props.location.pathname);
@@ -36,17 +41,17 @@ export default class Posts extends Component {
     container.setAttribute('id', 'map');
     document.body.appendChild(container);
 
-    const map = new mapboxgl.Map({
+    this.map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v8',
       center: [10.41, 63.43],
       zoom: 13
     });
 
-    map.on('style.load', () => {
-      map.addSource('markers', this.geoDataSource);
+    this.map.on('style.load', () => {
+      this.map.addSource('markers', this.geoDataSource);
 
-      map.addLayer({
+      this.map.addLayer({
         id: 'markers',
         type: 'symbol',
         interactive: true,
@@ -63,9 +68,9 @@ export default class Posts extends Component {
         }
       });
 
-      map.on('click', (e) => {
+      this.map.on('click', (e) => {
         // map.setFilter('markers', ['all', ['in', 'id'].concat([1,2,3])]);
-        map.featuresAt(e.point, { radius: 10 }, (err, features) => {
+        this.map.featuresAt(e.point, { radius: 10 }, (err, features) => {
           if (features && features.length > 0) {
             // document.getElementById('feature').innerHTML = features[0].properties.description;
           }
@@ -77,6 +82,15 @@ export default class Posts extends Component {
   componentWillReceiveProps(nextProps) {
     if (this.props.location.pathname !== nextProps.location.pathname) {
       this.props.fetchPosts(nextProps.location.pathname);
+    }
+
+    if (this.props.currentLocation.lat !== nextProps.currentLocation.lat) {
+      this.map.flyTo({
+        center: [
+          nextProps.currentLocation.lng,
+          nextProps.currentLocation.lat
+        ]::log()
+      });
     }
 
     if (this.props.posts !== nextProps.posts) {
@@ -105,10 +119,14 @@ export default class Posts extends Component {
   }
 
   render() {
-    const { posts, loading, upvote, downvote, kill, star, updateAuth, savePost } = this.props;
+    const {
+      posts, loading, upvote, downvote, kill, star,
+      updateToken, updateLocation, savePost, locations
+    } = this.props;
+
     return (
       <div>
-        <Header {...{ updateAuth }} />
+        <Header {...{ updateToken, updateLocation, locations }} />
         <div className='Posts'>
           <PostEditor
             {...{ savePost }}

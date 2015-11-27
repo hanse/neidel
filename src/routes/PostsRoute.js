@@ -1,17 +1,20 @@
 import { connect } from 'react-redux';
 import Posts from '../components/Posts';
 import { fetchPosts, upvote, downvote, kill, star, savePost } from '../actions/posts';
-import { updateAuth } from '../actions/auth';
+import { updateToken, updateLocation } from '../actions/auth';
 
 export default connect((state) => ({
   posts: state.posts.get('posts').toJS(),
-  loading: state.posts.get('loading')
+  loading: state.posts.get('loading'),
+  locations: state.auth.get('locations').toJS(),
+  currentLocation: state.auth.getIn(['locations', state.auth.get('currentLocation'), 'loc_coordinates']).toJS()::log()
 }), {
   fetchPosts,
   upvote,
   downvote,
   kill,
   star,
-  updateAuth,
+  updateToken,
+  updateLocation,
   savePost
 })(Posts);

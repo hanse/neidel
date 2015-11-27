@@ -31,12 +31,17 @@
     }
   }
 
-  input {
+  input, select {
     font-size: 1.2rem;
     padding: 5px 10px;
     margin-right: 1rem;
     border: 0;
     background: #444;
     color: #aaa;
+  }
+
+  select, option {
+    border-radius: 0;
+    height: 34px;
   }
 }
