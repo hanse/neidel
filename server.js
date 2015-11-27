@@ -74,6 +74,13 @@ app.post('/api/posts', getToken, (req, res) => {
   );
 });
 
+app.put('/api/location', getToken, (req, res) => {
+  jodel.updatePosition(req.token, req.body.location).then(
+    result => res.json(result),
+    err => res.status(err.response.statusCode).json({ message: err.message })
+  );
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
