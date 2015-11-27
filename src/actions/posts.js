@@ -27,7 +27,10 @@ export function savePost(message) {
       headers: {
         plebtoken: getState().auth.get('token') || '',
       },
-      body: JSON.stringify({ message })
+      body: JSON.stringify({
+        message,
+        location: getState().auth.getIn(['locations', getState().auth.get('currentLocation')]).toJS()
+      })
     }).then(
         result => (
           dispatch(fetchPosts(getState().router.location.pathname)),

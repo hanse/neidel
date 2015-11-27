@@ -68,7 +68,7 @@ app.post('/api/posts/:id/upvote', vote('up'));
 app.post('/api/posts/:id/downvote', vote('down'));
 
 app.post('/api/posts', getToken, (req, res) => {
-  jodel.createPost(req.token, req.body.message).then(
+  jodel.createPost(req.token, req.body.message, null, req.body.location).then(
     result => res.json(result),
     err => res.status(err.response.statusCode).json({ message: err.message })
   );
