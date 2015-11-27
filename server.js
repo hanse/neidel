@@ -2,9 +2,19 @@ import path from 'path';
 import { exec } from 'child_process';
 import express from 'express';
 import bodyParser from 'body-parser';
-import * as jodel from 'jodel';
+import Agent from 'socks5-https-client/lib/Agent';
+import createClient from 'jodel';
 
 const app = express();
+
+const jodel = createClient({
+  strictSSL: true,
+  agentClass: Agent,
+  agentOptions: {
+    socksHost: 'localhost',
+    socksPort: 9050
+  }
+});
 
 app.set('host', process.env.HOST || 'localhost');
 app.set('port', process.env.PORT || 3000);
